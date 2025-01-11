@@ -1,0 +1,14 @@
+.author_info_area{
+    border: 2px solid #EEEEEE;
+    padding: 20px;
+    border-radius: 15px;
+}
+.author_description{
+    margin-bottom: 20px;
+}
+
+.author_info_area h4{
+    background-color: blanchedalmond;
+    text-align: center;
+    padding: 10px;
+}

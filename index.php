@@ -19,19 +19,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 class target_author_info{
   
     public function __construct(){
-        
         add_shortcode( 'author_info', array( $this, 'taget_wp_author_info_shortcode' ) ); 
+        add_action('wp_enqueue_scripts', array( $this,'author_info_enqueue_styles') );
+    }
 
+    public function author_info_enqueue_styles() {
+        wp_enqueue_style('main_style', plugin_dir_url( __FILE__ ) . 'assets/css/style.css',array(),'1.0','all');
     }
-        public function taget_wp_author_info_shortcode() {
-            ob_start();
-            ?>
-            <h2>Welcome to Author Info</h2>
-            <?php
-            ob_get_clean();
-           return;
-        }
+
+    public function taget_wp_author_info_shortcode($atts, $content ='') {
+
+        $contents = shortcode_atts( array(
+            'title' => 'Welcome to Author Info',
+        ), $atts );
+
+        ob_start();
+        include __DIR__ . '/admin/author_info.php';
+       // echo "welcome to our shortcode";
+       return ob_get_clean();
+    
     }
+}
 
 
 new target_author_info();
